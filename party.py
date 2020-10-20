@@ -8,7 +8,14 @@ app.secret_key = "SECRETSECRETSECRET"
 
 
 def is_mel(name, email):
-    """Is this user Mel?"""
+    """Is this user Mel?
+    
+    >>> is_mel('Mel Melitpolski', 'mel@ubermelon.com')
+    True
+    
+    >>> is_mel('Judith Butler', 'judith@awesome.com')
+    False
+    """
 
     return name == "Mel Melitpolski" or email == "mel@ubermelon.com"
 
@@ -17,6 +24,21 @@ def most_and_least_common_type(treats):
     """Given list of treats, return most and least common treat types.
 
     Return most and least common treat types in tuple of format (most, least).
+
+    # What if there’s only one type of food? Does it show for both least and most?
+    >>> most_and_least_common_type([{'type': 'dessert'}])
+    ('dessert', 'dessert')
+
+    # What is there is a tie for the most common food?
+    >>> most_and_least_common_type([{'type': 'dessert'},{'type': 'dessert'},{'type': 'appetizer'},{'type': 'appetizer'},{'type': 'drink'}])
+    ('dessert','drink')
+
+    # What if an empty list is given?
+    >>> most_and_least_common_type([ ])
+    (None, None)
+
+    >>> most_and_least_common_type([{'type': 'dessert'}, {'type': 'dessert'}, {'type': 'appetizer'}, {'type': 'dessert'}, {'type': 'appetizer'}, {'type': 'drink'}])
+    ('dessert','drink')
     """
 
     types = {}
@@ -38,7 +60,7 @@ def most_and_least_common_type(treats):
             least_count = count
             least_type = treat_type
 
-    return (most_type, least_type)
+    return (most_type,least_type)
 
 
 def get_treats():
